@@ -61,6 +61,15 @@
             src="https://www.dropbox.com/scl/fi/wfhdmzyij7mdqq2snt0na/Sofi-s-Wedding-Animation-with-music-Final-Version.mp4?rlkey=pgjkgx0yxbt7d6krkkdf4k98d&st=vuv0zear&raw=1"></video>
     </div>
 
+    <!-- FULLSCREEN PARKING VIDEO OVERLAY -->
+    <div id="parking-video-overlay" class="fixed inset-0 z-[200] bg-black hidden flex-col items-center justify-center">
+        <button onclick="closeParkingVideo()" aria-label="Close video" class="absolute top-4 right-4 z-[210] w-11 h-11 rounded-full bg-white/15 text-white text-xl flex items-center justify-center hover:bg-white/30 transition backdrop-blur-sm">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <video id="parking-video" class="w-full h-full object-contain" playsinline preload="metadata"
+            src="https://www.dropbox.com/scl/fi/5j85ay55zdx6cflnsekoq/Secret-Glass-Parking-Space.mov?rlkey=ioidvbez9hvh6vbbu5gnebe35&st=93ylsn5m&raw=1"></video>
+    </div>
+
     <!-- Navbar -->
     <nav class="fixed w-full bg-ivory/90 backdrop-blur-md z-50 border-b border-softgold">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -76,10 +85,8 @@
             <!-- Right side: Language Switcher + Mobile Icon -->
             <div class="flex items-center gap-4">
                 <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest select-none">
-                    <!-- EN is active (red bold, not clickable) -->
                     <span class="text-kwared font-bold cursor-default">EN</span>
                     <span class="text-silverecho">|</span>
-                    <!-- BM links to BM page — replace #BM_PAGE_URL with actual URL -->
                     <a href="https://aisleatelierco.github.io/mikhail-ain-wedding/index_bm.html" class="text-nearblack hover:text-warmgold transition-colors duration-200">BM</a>
                 </div>
                 <button class="md:hidden text-nearblack"><i class="fa-solid fa-bars text-xl"></i></button>
@@ -327,8 +334,24 @@
             </div>
             <div class="bg-white p-8 border border-silverecho hover:border-warmgold transition text-center shadow-sm max-w-2xl mx-auto">
                 <div class="text-warmgold text-3xl mb-4"><i class="fa-solid fa-square-parking"></i></div>
-                <h4 class="font-serif text-2xl font-bold text-nearblack mb-2">Parking</h4>
-                <p class="text-sm text-darksage leading-relaxed">Details regarding parking at Secret Glass will be updated closer to the date. Please check back here soon!</p>
+                <h4 class="font-serif text-2xl font-bold text-nearblack mb-6">Parking</h4>
+                <div class="grid md:grid-cols-2 gap-4 text-left mb-8">
+                    <div class="bg-ivory p-5 border border-softgold/60 rounded">
+                        <p class="text-kwared font-bold text-xs uppercase tracking-widest mb-2">
+                            <i class="fa-solid fa-circle-check mr-1"></i> Option 1 — Free
+                        </p>
+                        <p class="text-sm text-darksage leading-relaxed">Free parking space right next to the hall, fitting up to <strong class="text-nearblack">15 cars</strong> at one time. First come, first served!</p>
+                    </div>
+                    <div class="bg-ivory p-5 border border-softgold/60 rounded">
+                        <p class="text-kwared font-bold text-xs uppercase tracking-widest mb-2">
+                            <i class="fa-solid fa-coins mr-1"></i> Option 2 — Paid
+                        </p>
+                        <p class="text-sm text-darksage leading-relaxed">A second parking space nearby, paid <strong class="text-nearblack">per entry (RM10+)</strong>. Watch the video guide below to see how to get from the parking to the hall.</p>
+                    </div>
+                </div>
+                <button onclick="playParkingVideo()" class="inline-flex items-center justify-center px-8 py-3 bg-kwared text-white font-bold uppercase tracking-widest text-sm rounded hover:bg-deepred hover:-translate-y-0.5 transition-all duration-300 shadow-md cursor-pointer">
+                    <i class="fa-solid fa-circle-play text-lg mr-2"></i> Watch Parking Guide Video
+                </button>
             </div>
         </div>
     </section>
@@ -385,133 +408,110 @@
         </div>
     </section>
 
-        <!-- 9. GUEST WISHES -->
-<section id="wishes" class="py-16 px-4 bg-white border-t border-softgold">
-    <div class="max-w-2xl mx-auto">
-        <div class="text-center mb-8">
-            <div class="text-warmgold text-3xl mb-4"><i class="fa-solid fa-heart"></i></div>
-            <h2 class="font-serif text-3xl font-bold text-nearblack mb-2">Wishes from Our Guests</h2>
-            <div class="h-[2px] w-24 bg-softgold mx-auto"></div>
+    <!-- 9. GUEST WISHES -->
+    <section id="wishes" class="py-16 px-4 bg-white border-t border-softgold">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="text-warmgold text-3xl mb-4"><i class="fa-solid fa-heart"></i></div>
+                <h2 class="font-serif text-3xl font-bold text-nearblack mb-2">Wishes from Our Guests</h2>
+                <div class="h-[2px] w-24 bg-softgold mx-auto"></div>
+            </div>
+
+            <!-- Scrollable wishes container -->
+            <div class="h-80 overflow-y-auto space-y-4 pr-2" style="scrollbar-width: thin; scrollbar-color: #c8922a #f9f3ea;">
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAS</p>
+                    <p class="text-sm text-nearblack leading-relaxed">I love youuuuuuuuu</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAR</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Selamat Pengantin Baru</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">ZHAM</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Happy Wedding Day</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">MI</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Selamat Pengantin Baru to Ain and Mikhail.. Semoga kalian berdua diberi kebahagian dunia akhirat. Aamiin 😊</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NF</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Congrats on your wedding Ain!</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NEB</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Alhamdulillah Sofi and Marsh, may this new chapter in your life go smoothly and may Allah SWT bless the union of your families. Love you like a sister Sofi, always wishing for your happiness and that Mikhail will bring joy to your life.</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">SSR</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Sofiiii I know U know who I am and I wanna let U know I am soooooooooo happpyyy U finally get to enter one of the happiest step in your life. I wish U the happiest from every aspects in life can ever be. I know marsh is a good guy he can treats U better than ur stupid exes. Pls have a good life U deserve it sayang ♥️ after everything uve been thru. I am very glad I can be part of the event to witness your moments..aaaaa I wanna cryyyy my smoll sof from darjah 4 dh nk kawin..Omoo..I'm overwhelmed..how time flies. anyway..I love you so much okay..happiest for U ✨✨✨</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">AHMZ</p>
+                    <p class="text-sm text-nearblack leading-relaxed italic">"Blooming flowers as the sky wide open,<br>Tangerine to blue ocean hue the sky paints.<br>Seven doors of heaven bestowed its blessing,<br>Seven layers of Earth bestowed its warmth.<br>To the Lord of all heart and soul our hands extend,<br>May the love be eternal."</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">FA</p>
+                    <p class="text-sm text-nearblack leading-relaxed italic">"Tulang bersambung memerlukan sendi,<br>Kurniaan Allah untuk kekalkannya bersama,<br>Semoga cinta kekal abadi,<br>Tanpa mengira tempat dan masa."</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NFSA</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Wishing you both a wonderful journey together and a lifetime of happiness. Congratulations!</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">DA</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Congrats Sofii!! Wishing you both a lifetime of love and happiness together! 💕</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAB</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Congratulations, Kakak Ain and Mikhail. Thank you for always being there for our family. Wishing you both a happy and blessed marriage. ❤️</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NS</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Selamat pengantin baru buat Kakak Ain dan Mikhail. Semoga hidup berdua sentiasa dilimpahi kebahagiaan, kasih sayang dan keberkatan. Tok wan doakan semoga kekal bahagia hingga ke akhir hayat. 🤍</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAZMZ</p>
+                    <p class="text-sm text-nearblack leading-relaxed">I'm so happy for both of you! Wish you only the best things in your new chapter. Selamat bercinta hingga ke jannah, Ain & Mikhail :)</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">FAN</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Semoga Ain dan pasangan bercinta till jannah.. luv u all 💕</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">ANN</p>
+                    <p class="text-sm text-nearblack leading-relaxed">This is only page one 🤍 Remember to be in the moment on the day for this is just the beginning of the rest of the book the both of you will be authoring 🪄✨</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NUSMR</p>
+                    <p class="text-sm text-nearblack leading-relaxed">May your love be blessed until Jannah</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">MS</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Tok Chik & Wan Chik sangat² gembira cucu saudara kami bakal mendirikan rumahtangga. Moga Allah berkati majlis dan perkahwinan Ain & Mikhail dunia & akhirat آمِيْن اللّهُمَّ آمِيْن </p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">SNY</p>
+                    <p class="text-sm text-nearblack leading-relaxed">Tahniah Kakak Ain & Mikhail. Acu doakan semoga kalian bahagia hingga syurga. Lalui kehidupan rumah tangga dengan aman, berkomunikasi dengan baik, hormati satu sama lain, terima kebaikan & keburukan satu sama lain, hargai sekecil-kecil perkara dan paling utama jangan tinggal solat & mengaji. Salam sayang dari acu untuk kalian ♥️🩷💜</p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">IC</p>
+                    <p class="text-sm text-nearblack leading-relaxed">CONGRATULATIONS ALL THE BEST AND GIVE BIRTH EARLY 👍 SO I CAN PLAY WITH THEM </p>
+                </div>
+                <div class="bg-ivory border border-softgold p-4 text-left">
+                    <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">CYS</p>
+                    <p class="text-sm text-nearblack leading-relaxed">CONGRATULATIONS ON YOUR MARRIAGE !!! WISHING YOU BOTH A HAPPY AND PROSPEROUS FUTURE ✨ 🤍 </p>
+                </div>
+            </div>
+            <p class="text-center text-[10px] uppercase tracking-widest text-darksage mt-4 opacity-60">↕ Scroll to read all wishes</p>
         </div>
-
-        <!-- Scrollable wishes container -->
-        <div class="h-80 overflow-y-auto space-y-4 pr-2" style="scrollbar-width: thin; scrollbar-color: #c8922a #f9f3ea;">
-            
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAS</p>
-                <p class="text-sm text-nearblack leading-relaxed">I love youuuuuuuuu</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAR</p>
-                <p class="text-sm text-nearblack leading-relaxed">Selamat Pengantin Baru</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">ZHAM</p>
-                <p class="text-sm text-nearblack leading-relaxed">Happy Wedding Day</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">MI</p>
-                <p class="text-sm text-nearblack leading-relaxed">Selamat Pengantin Baru to Ain and Mikhail.. Semoga kalian berdua diberi kebahagian dunia akhirat. Aamiin 😊</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NF</p>
-                <p class="text-sm text-nearblack leading-relaxed">Congrats on your wedding Ain!</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NEB</p>
-                <p class="text-sm text-nearblack leading-relaxed">Alhamdulillah Sofi and Marsh, may this new chapter in your life go smoothly and may Allah SWT bless the union of your families. Love you like a sister Sofi, always wishing for your happiness and that Mikhail will bring joy to your life.</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">SSR</p>
-                <p class="text-sm text-nearblack leading-relaxed">Sofiiii I know U know who I am and I wanna let U know I am soooooooooo happpyyy U finally get to enter one of the happiest step in your life. I wish U the happiest from every aspects in life can ever be. I know marsh is a good guy he can treats U better than ur stupid exes. Pls have a good life U deserve it sayang ♥️ after everything uve been thru. I am very glad I can be part of the event to witness your moments..aaaaa I wanna cryyyy my smoll sof from darjah 4 dh nk kawin..Omoo..I'm overwhelmed..how time flies. anyway..I love you so much okay..happiest for U ✨✨✨</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">AHMZ</p>
-                <p class="text-sm text-nearblack leading-relaxed italic">"Blooming flowers as the sky wide open,<br>Tangerine to blue ocean hue the sky paints.<br>Seven doors of heaven bestowed its blessing,<br>Seven layers of Earth bestowed its warmth.<br>To the Lord of all heart and soul our hands extend,<br>May the love be eternal."</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">FA</p>
-                <p class="text-sm text-nearblack leading-relaxed italic">"Tulang bersambung memerlukan sendi,<br>Kurniaan Allah untuk kekalkannya bersama,<br>Semoga cinta kekal abadi,<br>Tanpa mengira tempat dan masa."</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NFSA</p>
-                <p class="text-sm text-nearblack leading-relaxed">Wishing you both a wonderful journey together and a lifetime of happiness. Congratulations!</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">DA</p>
-                <p class="text-sm text-nearblack leading-relaxed">Congrats Sofii!! Wishing you both a lifetime of love and happiness together! 💕</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAB</p>
-                <p class="text-sm text-nearblack leading-relaxed">Congratulations, Kakak Ain and Mikhail. Thank you for always being there for our family. Wishing you both a happy and blessed marriage. ❤️</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NS</p>
-                <p class="text-sm text-nearblack leading-relaxed">Selamat pengantin baru buat Kakak Ain dan Mikhail. Semoga hidup berdua sentiasa dilimpahi kebahagiaan, kasih sayang dan keberkatan. Tok wan doakan semoga kekal bahagia hingga ke akhir hayat. 🤍</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NAZMZ</p>
-                <p class="text-sm text-nearblack leading-relaxed">I'm so happy for both of you! Wish you only the best things in your new chapter. Selamat bercinta hingga ke jannah, Ain & Mikhail :)</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">FAN</p>
-                <p class="text-sm text-nearblack leading-relaxed">Semoga Ain dan pasangan bercinta till jannah.. luv u all 💕</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">ANN</p>
-                <p class="text-sm text-nearblack leading-relaxed">This is only page one 🤍 Remember to be in the moment on the day for this is just the beginning of the rest of the book the both of you will be authoring 🪄✨</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">NUSMR</p>
-                <p class="text-sm text-nearblack leading-relaxed">May your love be blessed until Jannah</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">MS</p>
-                <p class="text-sm text-nearblack leading-relaxed">Tok Chik & Wan Chik sangat² gembira cucu saudara kami bakal mendirikan rumahtangga. Moga Allah berkati majlis dan perkahwinan Ain & Mikhail dunia & akhirat آمِيْن اللّهُمَّ آمِيْن </p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">SNY</p>
-                <p class="text-sm text-nearblack leading-relaxed">Tahniah Kakak Ain & Mikhail. Acu doakan semoga kalian bahagia hingga syurga. Lalui kehidupan rumah tangga dengan aman, berkomunikasi dengan baik, hormati satu sama lain, terima kebaikan & keburukan satu sama lain, hargai sekecil-kecil perkara dan paling utama jangan tinggal solat & mengaji. Salam sayang dari acu untuk kalian ♥️🩷💜</p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">IC</p>
-                <p class="text-sm text-nearblack leading-relaxed">CONGRATULATIONS ALL THE BEST AND GIVE BIRTH EARLY 👍 SO I CAN PLAY WITH THEM </p>
-            </div>
-
-            <div class="bg-ivory border border-softgold p-4 text-left">
-                <p class="text-xs font-bold uppercase tracking-widest text-warmgold mb-1">CYS</p>
-                <p class="text-sm text-nearblack leading-relaxed">CONGRATULATIONS ON YOUR MARRIAGE !!! WISHING YOU BOTH A HAPPY AND PROSPEROUS FUTURE ✨ 🤍 </p>
-            </div>
-
-      </div>
-        <p class="text-center text-[10px] uppercase tracking-widest text-darksage mt-4 opacity-60">↕ Scroll to read all wishes</p>
-    </div>
-</section>
+    </section>
     
     <!-- Footer -->
     <footer class="bg-nearblack text-ivory py-10 text-center">
         <h2 class="font-serif text-3xl mb-4 text-softgold">M & A</h2>
         <p class="text-xs tracking-[0.2em] uppercase text-silverecho">#MikhailGotHisAin • 05.07.2026</p>
-        <!-- Replace #AISLE_ATELIER_URL with actual URL -->
         <a href="https://aisleatelierco.github.io/home/" target="_blank" class="text-[10px] tracking-[0.2em] uppercase text-silverecho mt-6 inline-block hover:text-softgold transition-colors duration-200">@Aisle Atelier & Co.</a>
     </footer>
 
@@ -619,13 +619,13 @@
             }
         }
 
+        // Left original native requestVideoFullscreen intact for safety
         function requestVideoFullscreen() {
             if (videoOverlayEl.requestFullscreen) {
                 videoOverlayEl.requestFullscreen().catch(() => {});
             } else if (videoOverlayEl.webkitRequestFullscreen) {
                 videoOverlayEl.webkitRequestFullscreen();
             } else if (typeof weddingVideoEl.webkitEnterFullscreen === 'function') {
-                // iOS Safari: use the native video fullscreen player
                 const enterNative = () => { try { weddingVideoEl.webkitEnterFullscreen(); } catch (e) {} };
                 if (weddingVideoEl.readyState >= 1) {
                     enterNative();
@@ -633,7 +633,6 @@
                     weddingVideoEl.addEventListener('loadedmetadata', enterNative, { once: true });
                 }
             }
-            // If no fullscreen API exists, the fixed full-viewport overlay acts as the fullscreen layer.
         }
 
         function closeWeddingVideo() {
@@ -641,7 +640,6 @@
             videoActive = false;
             weddingVideoEl.pause();
 
-            // Leave browser fullscreen if we're still in it
             if (document.fullscreenElement && document.exitFullscreen) {
                 document.exitFullscreen().catch(() => {});
             } else if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
@@ -651,7 +649,6 @@
             videoOverlayEl.classList.add('hidden');
             videoOverlayEl.classList.remove('flex');
 
-            // Resume the background music with a gentle fade-in
             if (musicWasPlaying && bgMusic) {
                 bgMusic.volume = 0;
                 bgMusic.play()
@@ -660,10 +657,8 @@
             }
         }
 
-        // Video finished -> close overlay + resume music
         weddingVideoEl.addEventListener('ended', closeWeddingVideo);
 
-        // User exits browser fullscreen (Esc key, back gesture, etc.)
         document.addEventListener('fullscreenchange', () => {
             if (!document.fullscreenElement && videoActive) closeWeddingVideo();
         });
@@ -671,12 +666,85 @@
             if (!document.webkitFullscreenElement && videoActive) closeWeddingVideo();
         });
 
-        // iOS Safari native player "Done" button
         weddingVideoEl.addEventListener('webkitendfullscreen', closeWeddingVideo);
 
-        // Esc fallback for browsers where the overlay itself is the fullscreen layer
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && videoActive) closeWeddingVideo();
+        });
+    </script>
+    <script>
+        // ===== FULLSCREEN PARKING VIDEO PLAYER =====
+        const parkingVideoEl = document.getElementById('parking-video');
+        const parkingOverlayEl = document.getElementById('parking-video-overlay');
+        let parkingActive = false;
+        let parkingMusicWasPlaying = false;
+
+        function playParkingVideo() {
+            if (parkingActive) return;
+            parkingActive = true;
+            parkingMusicWasPlaying = !!(bgMusic && !bgMusic.paused);
+
+            const startPlayback = () => {
+                parkingOverlayEl.classList.remove('hidden');
+                parkingOverlayEl.classList.add('flex');
+                parkingVideoEl.currentTime = 0;
+                parkingVideoEl.muted = false;
+                const p = parkingVideoEl.play();
+                if (p) p.catch(err => console.log('Video playback blocked:', err));
+                requestParkingFullscreen();
+            };
+
+            if (parkingMusicWasPlaying) {
+                fadeAudio(bgMusic, 0, 500, () => { bgMusic.pause(); startPlayback(); });
+            } else {
+                startPlayback();
+            }
+        }
+
+        function requestParkingFullscreen() {
+            if (parkingOverlayEl.requestFullscreen) {
+                parkingOverlayEl.requestFullscreen().catch(() => {});
+            } else if (parkingOverlayEl.webkitRequestFullscreen) {
+                parkingOverlayEl.webkitRequestFullscreen();
+            } else if (typeof parkingVideoEl.webkitEnterFullscreen === 'function') {
+                const enterNative = () => { try { parkingVideoEl.webkitEnterFullscreen(); } catch (e) {} };
+                if (parkingVideoEl.readyState >= 1) { enterNative(); }
+                else { parkingVideoEl.addEventListener('loadedmetadata', enterNative, { once: true }); }
+            }
+        }
+
+        function closeParkingVideo() {
+            if (!parkingActive) return;
+            parkingActive = false;
+            parkingVideoEl.pause();
+
+            if (document.fullscreenElement && document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            } else if (document.webkitFullscreenElement && document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+
+            parkingOverlayEl.classList.add('hidden');
+            parkingOverlayEl.classList.remove('flex');
+
+            if (parkingMusicWasPlaying && bgMusic) {
+                bgMusic.volume = 0;
+                bgMusic.play()
+                    .then(() => fadeAudio(bgMusic, MUSIC_VOLUME, 800))
+                    .catch(() => { bgMusic.volume = MUSIC_VOLUME; });
+            }
+        }
+
+        parkingVideoEl.addEventListener('ended', closeParkingVideo);
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && parkingActive) closeParkingVideo();
+        });
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (!document.webkitFullscreenElement && parkingActive) closeParkingVideo();
+        });
+        parkingVideoEl.addEventListener('webkitendfullscreen', closeParkingVideo);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && parkingActive) closeParkingVideo();
         });
     </script>
 </body>
